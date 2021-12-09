@@ -46,7 +46,6 @@
                     <th scope="col">Last Name</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Role</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,7 +56,6 @@
                     <td th:text="${user.lastName}">LAST_NAME</td>
                     <td th:text="${user.phoneNumber}">PHONE_NUMBER</td>
                     <td th:text="${user.email}">EMAIL</td>
-                    <td th:text="${user.roles.toString.replace('ROLE_','').replace('[', '').replace(']', '')}">ROLE</td>
                 </tr>
                 </tbody>
             </table>

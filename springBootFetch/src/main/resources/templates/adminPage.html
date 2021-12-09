@@ -178,7 +178,6 @@
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Phone Number</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Roles</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -189,12 +188,6 @@
                                 <td th:text="${user.getLastName()}"></td>
                                 <td th:text="${user.getPhoneNumber()}"></td>
                                 <td th:text="${user.getEmail()}"></td>
-                                <td>
-                                    <p style="display: inline;"
-                                       th:each="role : ${user.getRoles()}"
-                                       th:text="*{role.getRoleName()}">
-                                    </p>
-                                </td>
                             </tr>
                             </tbody>
                         </table>

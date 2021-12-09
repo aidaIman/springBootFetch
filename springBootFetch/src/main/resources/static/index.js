@@ -108,10 +108,10 @@ async function getDefaultModal() {
 
 async function editUser(modal, id) {
     let userForEdit = await userFetchService.findOneUser(id);
-    let rolesUserForEdit = await userFetchService.findAllRoles();
+    let userAllRoles = await userFetchService.findAllRoles();
 
     let user = userForEdit.json();
-    let roles = rolesUserForEdit.json();
+    let roles = userAllRoles.json();
 
     modal.find('.modal-title').html('Edit user');
 
@@ -128,9 +128,7 @@ async function editUser(modal, id) {
             
                 <label for="editId" class="form-label ">ID</label>
                 <input type="text" class="form-control" id="editId" name="id" value="${user.id}" disabled><br>
-                
-                <label for="editUsername" class="form-label ">Username</label>
-                <input type="text" class="form-control" id="editUsername" name="username" value="${user.username}"><br>
+
                 
                 <label for="editPassword" class="form-label ">Password</label>
                 <input type="password" class="form-control" id="editPassword" name="password" value="${user.password}"><br>
@@ -164,7 +162,6 @@ async function editUser(modal, id) {
     })
     $("#editButton").on('click', async () => {
         let id = modal.find("#editId").val().trim();
-        let username = modal.find("#editUsername").val().trim();
         let password = modal.find("#editPassword").val().trim();
         let firstName = modal.find("#editFirstName").val().trim();
         let lastName = modal.find("#editLastName").val().trim();
@@ -176,7 +173,6 @@ async function editUser(modal, id) {
             const [firstRole, secondRole] = rolesUser;
             data = {
                 id: id,
-                username: username,
                 password: password,
                 firstName: firstName,
                 lastName: lastName,
@@ -198,7 +194,6 @@ async function editUser(modal, id) {
         } else {
             data = {
                 id: id,
-                username: username,
                 password: password,
                 firstName: firstName,
                 lastName: lastName,
@@ -240,11 +235,11 @@ async function editUser(modal, id) {
 }
 
 async function deleteUser(modal, id) {
-    let preuser = await userFetchService.findOneUser(id);
-    let roless = await userFetchService.findAllRoles();
+    let userForDelete = await userFetchService.findOneUser(id);
+    let userAllRoles = await userFetchService.findAllRoles();
 
-    let user = preuser.json();
-    let roles = roless.json();
+    let user = userForDelete.json();
+    let roles = userAllRoles.json();
 
     modal.find('.modal-title').html('Delete user');
 
@@ -265,8 +260,6 @@ async function deleteUser(modal, id) {
                 <label for="deleteUsername" class="form-label ">Username</label>
                 <input type="text" class="form-control" id="deleteUsername" name="username" value="${user.username}" disabled><br>
                 
-                <label for="deletePassword" class="form-label ">Password</label>
-                <input type="password" class="form-control" id="deletePassword" name="password" value="${user.password}" disabled><br>
                 
                 <label for="deleteFirstName" class="form-label ">First Name</label>
                 <input type="text" class="form-control" id="deleteFirstName" name="firstName" value="${user.firstName}" disabled><br>
@@ -298,7 +291,6 @@ async function deleteUser(modal, id) {
     $("#deleteButton").on('click', async () => {
         let id = modal.find("#deleteId").val().trim();
         let username = modal.find("#deleteUsername").val().trim();
-        let password = modal.find("#deletePassword").val().trim();
         let firstName = modal.find("#deleteFirstName").val().trim();
         let lastName = modal.find("#deleteLastName").val().trim();
         let phoneNumber = modal.find("#deletePhoneNumber").val().trim();
@@ -310,7 +302,6 @@ async function deleteUser(modal, id) {
             data = {
                 id: id,
                 username: username,
-                password: password,
                 firstName: firstName,
                 lastName: lastName,
                 phoneNumber: phoneNumber,
@@ -332,7 +323,6 @@ async function deleteUser(modal, id) {
             data = {
                 id: id,
                 username: username,
-                password: password,
                 firstName: firstName,
                 lastName: lastName,
                 phoneNumber: phoneNumber,
